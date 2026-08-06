@@ -17,11 +17,11 @@ A simple and responsive web application for tracking daily expenses. Users can a
 
 ## Built With
 
-- **HTML5** – Page structure
-- **CSS3** – Styling and responsive layout
-- **Vanilla JavaScript (ES6+)** – Application logic
-- **Chart.js** – Pie chart visualization
-- **LocalStorage API** – Client-side data persistence
+- **HTML5** - Page structure
+- **CSS3** - Styling and responsive layout
+- **Vanilla JavaScript (ES6+)** - Application logic
+- **Chart.js** - Pie chart visualization
+- **LocalStorage API** - Client-side data persistence
 
 ## Project Structure
 
@@ -53,8 +53,8 @@ No installation or additional setup is required.
 
 ## Documentation
 
--  `requirements.md` — Functional and non-functional requirements.
--  `design.md` — Design documentation, UI layout, color palette, typography, and design decisions.
+-  `requirements.md` - Functional and non-functional requirements.
+-  `design.md` - Design documentation, UI layout, color palette, typography, and design decisions.
 
 ## Future Improvements
 
