@@ -23,6 +23,9 @@ A simple and responsive web application for tracking daily expenses. Users can a
 - **Chart.js** – Pie chart visualization
 - **LocalStorage API** – Client-side data persistence
 
+## Project Structure
+
+```text
 Expense-Tracker/
 ├── css/
 ├── js/
@@ -32,6 +35,7 @@ Expense-Tracker/
 ├── requirements.md
 ├── index.html
 └── README.md
+```
 
 ## Getting Started
 
@@ -60,6 +64,6 @@ No installation or additional setup is required.
 - Dark mode
 - Export transaction history
 
-## License
+## Acknowledgements
 
-This project was developed for learning purposes as part of the CodingCamp Software Engineering program.
+This project was developed as part of the CodingCamp Software Engineering program to practice building a client-side web application using HTML, CSS, and Vanilla JavaScript.
