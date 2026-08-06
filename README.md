@@ -4,8 +4,6 @@ A simple and responsive web application for tracking daily expenses. Users can a
 
 ## Preview
 
-> ## Preview
-
 ![Expense Tracker Preview](preview/preview.png)
 
 ## Features
