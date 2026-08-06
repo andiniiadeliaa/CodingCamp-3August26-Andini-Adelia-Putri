@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense & Budget Visualizer</title>
+
+    <!-- Chart.js CDN — used for the spending pie chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Our stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <!-- ===================== APP WRAPPER ===================== -->
+    <div class="app-container">
+
+      <!-- ---------- HEADER ---------- -->
+      <header class="app-header">
+        <h1>💰 Expense Tracker</h1>
+        <p class="subtitle">Track your daily spending with ease.</p>
+      </header>
+
+      <!-- ---------- BALANCE CARD ---------- -->
+      <!-- Step 5 will wire this up to update dynamically -->
+      <section class="balance-card" aria-label="Total Balance">
+        <p class="balance-label">Total Spent</p>
+        <h2 class="balance-amount" id="total-balance">Rp 0</h2>
+      </section>
+
+      <!-- ---------- MAIN CONTENT GRID ---------- -->
+      <!-- Two-column on desktop, single-column on mobile -->
+      <main class="main-grid">
+
+        <!-- ===== LEFT COLUMN ===== -->
+        <div class="left-column">
+
+          <!-- ADD TRANSACTION FORM -->
+          <!-- Step 3 will add validation and submit logic -->
+          <section class="card" aria-label="Add Transaction">
+            <h2 class="card-title">Add Transaction</h2>
+
+            <form id="transaction-form" novalidate>
+
+              <!-- Item Name -->
+              <div class="form-group">
+                <label for="item-name">Item Name</label>
+                <input
+                  type="text"
+                  id="item-name"
+                  placeholder="e.g. Lunch, Grab, Cinema"
+                  autocomplete="off"
+                />
+                <!-- Error message shown when field is empty -->
+                <span class="error-msg" id="error-item-name"></span>
+              </div>
+
+              <!-- Amount -->
+              <div class="form-group">
+                <label for="amount">Amount (Rp)</label>
+                <input
+                  type="number"
+                  id="amount"
+                  placeholder="e.g. 25000"
+                  min="1"
+                />
+                <span class="error-msg" id="error-amount"></span>
+              </div>
+
+              <!-- Category -->
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category">
+                  <option value="">-- Select category --</option>
+                  <option value="Food">🍔 Food</option>
+                  <option value="Transport">🚗 Transport</option>
+                  <option value="Fun">🎉 Fun</option>
+                </select>
+                <span class="error-msg" id="error-category"></span>
+              </div>
+
+              <button type="submit" class="btn-add">+ Add Transaction</button>
+
+            </form>
+          </section>
+
+        </div><!-- /left-column -->
+
+        <!-- ===== RIGHT COLUMN ===== -->
+        <div class="right-column">
+
+          <!-- TRANSACTION LIST -->
+          <!-- Step 4 will render transactions here dynamically -->
+          <section class="card" aria-label="Transaction History">
+            <h2 class="card-title">Transaction History</h2>
+
+            <!-- Empty state shown when there are no transactions -->
+            <p class="empty-state" id="empty-state">No transactions yet. Add one above!</p>
+
+            <!-- Transactions will be injected into this list by JavaScript -->
+            <ul class="transaction-list" id="transaction-list"></ul>
+          </section>
+
+          <!-- PIE CHART -->
+          <!-- Step 6 will render the Chart.js pie chart here -->
+          <section class="card chart-card" aria-label="Spending Chart">
+            <h2 class="card-title">Spending by Category</h2>
+
+            <!-- Canvas element required by Chart.js -->
+            <div class="chart-wrapper">
+              <canvas id="spending-chart"></canvas>
+            </div>
+
+            <!-- Shown when there's no data to display yet -->
+            <p class="empty-state" id="chart-empty-state">Add transactions to see the chart.</p>
+          </section>
+
+        </div><!-- /right-column -->
+
+      </main><!-- /main-grid -->
+
+      <footer class="app-footer">
+        <p>© 2026 Expense Tracker. All rights reserved.</p>
+      </footer>
+
+    </div><!-- /app-container -->
+
+    <!-- Our JavaScript (loaded at the end so the DOM is ready) -->
+    <script src="js/app.js"></script>
+
+  </body>
+</html>

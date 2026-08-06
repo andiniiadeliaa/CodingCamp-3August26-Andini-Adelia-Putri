@@ -1,0 +1,383 @@
+/* =========================================================
+   style.css — Expense & Budget Visualizer
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. RESET & BASE
+   --------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Color palette */
+  --color-bg:         #f0f2f5;
+  --color-surface:    #ffffff;
+  --color-primary:    #6c63ff;       /* purple accent */
+  --color-primary-hover: #574fd6;
+  --color-danger:     #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-text:       #1e1e2e;
+  --color-text-muted: #6b7280;
+  --color-border:     #e5e7eb;
+
+  /* Category badge colors */
+  --color-food:       #f97316;
+  --color-transport:  #3b82f6;
+  --color-fun:        #a855f7;
+
+  /* Spacing & shape */
+  --radius:    12px;
+  --radius-sm: 6px;
+  --shadow:    0 2px 12px rgba(0, 0, 0, 0.07);
+  --transition: 0.2s ease;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+
+/* ---------------------------------------------------------
+   2. APP CONTAINER
+   --------------------------------------------------------- */
+.app-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+
+/* ---------------------------------------------------------
+   3. HEADER
+   --------------------------------------------------------- */
+.app-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+
+/* ---------------------------------------------------------
+   4. BALANCE CARD
+   --------------------------------------------------------- */
+.balance-card {
+  background: linear-gradient(135deg, var(--color-primary), #9333ea);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  text-align: center;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(108, 99, 255, 0.35);
+}
+
+.balance-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+
+.balance-amount {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+
+/* ---------------------------------------------------------
+   5. MAIN GRID — two columns on desktop, one on mobile
+   --------------------------------------------------------- */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Stack columns on small screens */
+@media (max-width: 640px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .balance-amount {
+    font-size: 2rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.6rem;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   6. CARD
+   --------------------------------------------------------- */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+
+/* ---------------------------------------------------------
+   7. FORM
+   --------------------------------------------------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--color-text);
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: #fff;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+}
+
+/* Red border when field has a validation error */
+.form-group input.input-error,
+.form-group select.input-error {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+/* Inline validation error text */
+.error-msg {
+  font-size: 0.78rem;
+  color: var(--color-danger);
+  margin-top: 4px;
+  min-height: 1em;   /* prevents layout shift when message appears/disappears */
+}
+
+/* Add button */
+.btn-add {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+  margin-top: 4px;
+}
+
+.btn-add:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-add:active {
+  transform: scale(0.98);
+}
+
+
+/* ---------------------------------------------------------
+   8. TRANSACTION LIST
+   --------------------------------------------------------- */
+.transaction-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Allow list to scroll if it grows very long */
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;   /* room for scrollbar */
+}
+
+/* Scrollbar styling (Webkit browsers) */
+.transaction-list::-webkit-scrollbar {
+  width: 5px;
+}
+.transaction-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.transaction-list::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 99px;
+}
+
+/* Individual transaction item */
+.transaction-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  gap: 12px;
+  animation: fadeIn 0.25s ease;
+}
+
+/* Left side — name + category badge */
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;        /* allow text-overflow to work */
+}
+
+.transaction-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Category badge pill */
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  color: #fff;
+  width: fit-content;
+}
+
+.badge-food      { background-color: var(--color-food); }
+.badge-transport { background-color: var(--color-transport); }
+.badge-fun       { background-color: var(--color-fun); }
+
+/* Right side — amount + delete button */
+.transaction-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.transaction-amount {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+/* Delete button */
+.btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+  line-height: 1;
+}
+
+.btn-delete:hover {
+  color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   9. EMPTY STATE
+   --------------------------------------------------------- */
+.empty-state {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  padding: 20px 0;
+}
+
+
+/* ---------------------------------------------------------
+   10. CHART CARD
+   --------------------------------------------------------- */
+.chart-card {
+  /* sits below the transaction list in the right column */
+  margin-top: 0;        /* gap is already handled by the grid */
+}
+
+.chart-wrapper {
+  position: relative;
+  /* Constrain canvas so the pie doesn't grow too large */
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+
+/* ---------------------------------------------------------
+   11. FOOTER
+   --------------------------------------------------------- */
+.app-footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+
+/* ---------------------------------------------------------
+   12. ANIMATION
+   --------------------------------------------------------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
