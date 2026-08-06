@@ -54,7 +54,8 @@ No installation or additional setup is required.
 ## Documentation
 
 -  `requirements.md` - Functional and non-functional requirements.
--  `design.md` - Design documentation, UI layout, color palette, typography, and design decisions.
+-  `design.md` - UI/UX design documentation, layout, color palette, and design decisions.
+-  `architecture.md` - Application architecture, data flow, system components, and storage design.
 
 ## Future Improvements
 
